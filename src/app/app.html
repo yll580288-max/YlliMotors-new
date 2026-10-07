@@ -1,0 +1,544 @@
+```html
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-container">
+
+    <a class="logo" href="#home" (click)="closeMobileMenu()">
+      <span class="logo-mark">YM</span>
+      <span class="logo-text">YLLI <strong>MOTORS</strong></span>
+    </a>
+
+    <nav class="nav-links" [class.is-open]="showMobileMenu">
+      <a href="#home" class="active" (click)="closeMobileMenu()">Home</a>
+      <a href="#inventory" (click)="closeMobileMenu()">Inventory</a>
+      <a href="#about" (click)="closeMobileMenu()">About Us</a>
+      <a href="#services" (click)="closeMobileMenu()">Services</a>
+      <a href="#contact" (click)="closeMobileMenu()">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="search-icon" type="button" aria-label="Search" (click)="searchCars()">
+        <span>⌕</span>
+      </button>
+
+      <a href="#inventory" class="nav-button" (click)="closeMobileMenu()">
+        View Cars
+      </a>
+    </div>
+
+    <button class="mobile-menu" type="button" aria-label="Open menu" (click)="toggleMobileMenu()">
+      ☰
+    </button>
+
+  </div>
+</header>
+
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="eyebrow">
+        PREMIUM CARS. TRUSTED DEALERSHIP.
+      </span>
+
+      <h1>
+        Find Your
+        <span>Next Drive.</span>
+      </h1>
+
+      <p>
+        Quality vehicles. Transparent pricing. Exceptional service.
+        Your journey starts here.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#inventory" class="btn btn-primary">
+          Explore Cars
+          <span>→</span>
+        </a>
+
+        <a href="#contact" class="btn btn-secondary">
+          Book a Test Drive
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VEHICLE SEARCH -->
+  <section class="vehicle-search">
+
+    <div class="search-field">
+      <label>Make</label>
+
+      <select [(ngModel)]="selectedMake">
+        <option>All Makes</option>
+        <option>BMW</option>
+        <option>Mercedes-Benz</option>
+        <option>Audi</option>
+        <option>Porsche</option>
+        <option>Toyota</option>
+        <option>Volkswagen</option>
+      </select>
+    </div>
+
+
+    <div class="search-field">
+      <label>Model</label>
+
+      <select [(ngModel)]="selectedModel">
+        <option>All Models</option>
+        <option>3 Series</option>
+        <option>C-Class</option>
+        <option>A4</option>
+        <option>Q5</option>
+        <option>RAV4</option>
+      </select>
+    </div>
+
+
+    <div class="search-field">
+      <label>Year</label>
+
+      <select [(ngModel)]="selectedYear">
+        <option>Any Year</option>
+        <option>2026</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+        <option>2022</option>
+      </select>
+    </div>
+
+
+    <div class="search-field">
+      <label>Price Range</label>
+
+      <select [(ngModel)]="selectedPrice">
+        <option>Any Price</option>
+        <option>Under $30,000</option>
+        <option>$30,000 - $50,000</option>
+        <option>$50,000 - $75,000</option>
+        <option>$75,000+</option>
+      </select>
+    </div>
+
+
+    <button class="search-button" type="button" (click)="searchCars()">
+      Search
+      <span>⌕</span>
+    </button>
+
+  </section>
+
+
+  <!-- FEATURED CARS -->
+  <section class="featured-cars" id="inventory">
+
+    <div class="section-container">
+
+      <!-- SECTION HEADER -->
+      <div class="section-header">
+
+        <div>
+
+          <span class="section-eyebrow">
+            FEATURED CARS
+          </span>
+
+          <h2>
+            Popular Picks
+          </h2>
+
+          <p>
+            Handpicked vehicles, ready for your next adventure.
+          </p>
+
+        </div>
+
+
+        <div class="car-arrows">
+
+          <button type="button" aria-label="Previous cars" (click)="cycleCars(-1)">
+            ←
+          </button>
+
+          <button type="button" aria-label="Next cars" (click)="cycleCars(1)">
+            →
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CAR GRID -->
+      <div class="cars-grid">
+
+        @for (car of filteredCars; track car.model) {
+
+          <article class="car-card">
+
+            <!-- CAR IMAGE -->
+            <div class="car-image">
+
+              <img
+                [src]="car.image"
+                [alt]="car.brand + ' ' + car.model"
+              />
+
+              <span class="car-badge">
+                {{ car.badge }}
+              </span>
+
+            </div>
+
+
+            <!-- CAR CONTENT -->
+            <div class="car-content">
+
+              <!-- TITLE -->
+              <div class="car-title">
+
+                <div>
+
+                  <h3>
+                    {{ car.brand }} {{ car.model }}
+                  </h3>
+
+                  <span class="car-year">
+                    {{ car.year }}
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- CAR SPECS -->
+              <div class="car-specs">
+
+                <span>
+                  <strong>⌁</strong>
+                  {{ car.mileage }}
+                </span>
+
+                <span>
+                  <strong>◉</strong>
+                  {{ car.fuel }}
+                </span>
+
+                <span>
+                  <strong>⚙</strong>
+                  {{ car.transmission }}
+                </span>
+
+              </div>
+
+
+              <!-- PRICE + DETAILS -->
+              <div class="car-bottom">
+
+                <div class="car-price">
+                  {{ car.price }}
+                </div>
+
+                <button class="details-button" type="button" (click)="openCarDetails(car)">
+                  View Details
+                  <span>→</span>
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- WHY CHOOSE YLLIMOTORS -->
+  <section class="why-us" id="about">
+    <div class="section-heading">
+      <span>WHY YLLIMOTORS</span>
+      <h2>More Than Just a Car.</h2>
+      <p>
+        We make buying your next vehicle simple, transparent and stress-free.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">✓</div>
+        <h3>Quality Vehicles</h3>
+        <p>
+          Every vehicle is carefully selected and inspected before it reaches
+          our showroom.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">◆</div>
+        <h3>Trusted Service</h3>
+        <p>
+          Professional service and honest communication from the first visit
+          to the final delivery.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">€</div>
+        <h3>Flexible Financing</h3>
+        <p>
+          Find a payment plan that works for your budget with flexible financing
+          options.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">↗</div>
+        <h3>Easy Test Drives</h3>
+        <p>
+          Choose your favorite vehicle and book a test drive whenever it suits
+          you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FINANCING CALCULATOR -->
+  <section class="finance-section" id="services">
+    <div class="finance-content">
+
+      <div class="finance-info">
+        <span>FINANCING</span>
+        <h2>Drive Your Dream Car.</h2>
+
+        <p>
+          Calculate your estimated monthly payment and find a vehicle that fits
+          your budget.
+        </p>
+
+        <div class="finance-points">
+          <div>
+            <strong>✓</strong>
+            <span>Flexible payment options</span>
+          </div>
+
+          <div>
+            <strong>✓</strong>
+            <span>Competitive interest rates</span>
+          </div>
+
+          <div>
+            <strong>✓</strong>
+            <span>Simple financing process</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="calculator">
+
+        <div class="calculator-header">
+          <h3>Payment Calculator</h3>
+          <p>Estimate your monthly payment</p>
+        </div>
+
+        <div class="input-group">
+          <label>Vehicle Price</label>
+
+          <div class="input-wrapper">
+            <span>€</span>
+            <input
+              type="number"
+              [(ngModel)]="carPrice"
+              min="0"
+            />
+          </div>
+        </div>
+
+
+        <div class="input-group">
+          <label>Down Payment</label>
+
+          <div class="input-wrapper">
+            <span>€</span>
+            <input
+              type="number"
+              [(ngModel)]="downPayment"
+              min="0"
+            />
+          </div>
+        </div>
+
+
+        <div class="input-group">
+          <label>Loan Term</label>
+
+          <select [(ngModel)]="loanTerm">
+            <option [value]="12">12 Months</option>
+            <option [value]="24">24 Months</option>
+            <option [value]="36">36 Months</option>
+            <option [value]="48">48 Months</option>
+            <option [value]="60">60 Months</option>
+            <option [value]="72">72 Months</option>
+          </select>
+        </div>
+
+
+        <div class="calculator-result">
+          <span>Estimated Monthly Payment</span>
+
+          <strong>
+            €{{ monthlyPayment | number:'1.0-0' }}
+          </strong>
+
+          <small>
+            Estimated payment based on selected vehicle price and term.
+          </small>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="contact-card">
+      <div class="contact-copy">
+        <span>CONTACT</span>
+        <h2>Book Your Test Drive Today.</h2>
+        <p>
+          Visit our showroom or speak with our specialists to find the right car for your lifestyle.
+        </p>
+      </div>
+
+      <div class="contact-actions">
+        <a href="tel:+35544123456" class="btn btn-primary">Call Dealer</a>
+        <a href="mailto:hello@yllimotors.com" class="btn btn-secondary">Email Us</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-heading">
+      <span>OUR CUSTOMERS</span>
+      <h2>What Drivers Say.</h2>
+      <p>
+        Real experiences from people who found their next vehicle with
+        YlliMotors.
+      </p>
+    </div>
+
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “The whole experience was incredibly smooth. The team helped me find
+          exactly the car I was looking for.”
+        </p>
+
+        <div class="customer">
+          <div class="avatar">A</div>
+
+          <div>
+            <strong>Ardit K.</strong>
+            <span>BMW 330i Owner</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “Very professional service and excellent communication. I would
+          definitely recommend YlliMotors.”
+        </p>
+
+        <div class="customer">
+          <div class="avatar">L</div>
+
+          <div>
+            <strong>Leon B.</strong>
+            <span>Mercedes C-Class Owner</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+
+        <p>
+          “I booked a test drive and ended up finding my perfect car. Everything
+          was quick and transparent.”
+        </p>
+
+        <div class="customer">
+          <div class="avatar">E</div>
+
+          <div>
+            <strong>Elira M.</strong>
+            <span>Audi Q5 Owner</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+@if (selectedCar) {
+  <div class="car-modal-backdrop" (click)="closeCarDetails()">
+    <div class="car-modal" (click)="$event.stopPropagation()">
+      <button class="close-modal" type="button" (click)="closeCarDetails()" aria-label="Close details">
+        ×
+      </button>
+
+      <div class="car-modal-image">
+        <img [src]="selectedCar.image" [alt]="selectedCar.brand + ' ' + selectedCar.model" />
+      </div>
+
+      <div class="car-modal-body">
+        <span class="car-badge modal-badge">{{ selectedCar.badge }}</span>
+        <h3>{{ selectedCar.brand }} {{ selectedCar.model }}</h3>
+        <p>{{ selectedCar.year }} • {{ selectedCar.transmission }} • {{ selectedCar.fuel }}</p>
+        <ul>
+          <li><strong>Mileage:</strong> {{ selectedCar.mileage }}</li>
+          <li><strong>Transmission:</strong> {{ selectedCar.transmission }}</li>
+          <li><strong>Fuel:</strong> {{ selectedCar.fuel }}</li>
+        </ul>
+        <div class="modal-footer">
+          <div class="modal-price">{{ selectedCar.price }}</div>
+          <a href="#contact" class="btn btn-primary" (click)="closeCarDetails()">Book Test Drive</a>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+```

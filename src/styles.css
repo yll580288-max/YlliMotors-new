@@ -1,0 +1,499 @@
+/* You can add global styles to this file, and also import other style files */
+/* ================================
+   GLOBAL
+================================ */
+
+:host {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", Arial, sans-serif;
+  background: #070a0d;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+select {
+  font-family: inherit;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  background: rgba(5, 8, 11, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.nav-container {
+  width: min(1200px, calc(100% - 48px));
+  height: 78px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* LOGO */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #dcae55;
+  color: #e6bd6c;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo-text {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.logo-text strong {
+  color: #e6bd6c;
+  font-weight: 700;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-links a {
+  position: relative;
+
+  color: #b8bdc3;
+  font-size: 12px;
+  font-weight: 500;
+
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+}
+
+.nav-links a.active::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+
+  width: 4px;
+  height: 4px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+  background: #e6bd6c;
+}
+
+
+/* NAV ACTIONS */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.search-icon {
+  border: 0;
+  background: transparent;
+
+  color: white;
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.nav-button {
+  padding: 11px 21px;
+
+  border: 1px solid #d7aa52;
+  border-radius: 4px;
+
+  color: #f3c66f;
+  font-size: 11px;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.nav-button:hover {
+  background: #e6bd6c;
+  color: #080a0d;
+}
+
+
+/* MOBILE MENU */
+
+.mobile-menu {
+  display: none;
+
+  border: 0;
+  background: transparent;
+
+  color: white;
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
+
+  min-height: 680px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 6, 9, 0.94) 0%,
+      rgba(3, 6, 9, 0.72) 42%,
+      rgba(3, 6, 9, 0.25) 75%,
+      rgba(3, 6, 9, 0.65) 100%
+    ),
+    url("https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=2200&q=85")
+    center / cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      0deg,
+      #070a0d 0%,
+      transparent 25%,
+      transparent 80%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+
+  padding-top: 60px;
+}
+
+.eyebrow {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  color: #e6bd6c;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.hero h1 {
+  max-width: 650px;
+
+  margin: 0;
+
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 0.96;
+  letter-spacing: -3px;
+
+  font-weight: 700;
+}
+
+.hero h1 span {
+  display: block;
+  color: #e6bd6c;
+}
+
+.hero p {
+  max-width: 500px;
+
+  margin: 25px 0 30px;
+
+  color: #c0c5ca;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 24px;
+
+  border-radius: 4px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background: #e6bd6c;
+  color: #080a0d;
+}
+
+.btn-primary:hover {
+  background: #f3d18e;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(230, 189, 108, 0.6);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: rgba(230, 189, 108, 0.1);
+  transform: translateY(-2px);
+}
+
+
+/* ================================
+   VEHICLE SEARCH
+================================ */
+
+.vehicle-search {
+  position: relative;
+  z-index: 5;
+
+  width: min(1100px, calc(100% - 48px));
+
+  margin: -45px auto 0;
+
+  padding: 18px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 12px;
+
+  background: rgba(12, 17, 22, 0.97);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-field label {
+  color: #8d959d;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.search-field select {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #273039;
+  border-radius: 3px;
+
+  outline: none;
+
+  background: #10161c;
+  color: #dce0e3;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.search-field select:focus {
+  border-color: #dcae55;
+}
+
+.search-button {
+  align-self: end;
+
+  min-height: 38px;
+  padding: 0 22px;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: #e6bd6c;
+  color: #080a0d;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.search-button:hover {
+  background: #f3d18e;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  .nav-links,
+  .nav-actions {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .hero {
+    min-height: 650px;
+  }
+
+  .vehicle-search {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-button {
+    min-height: 45px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .nav-container,
+  .hero-content {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .nav-container {
+    height: 68px;
+  }
+
+  .logo-text {
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 700px;
+
+    background-position: 62% center;
+  }
+
+  .hero-content {
+    padding-top: 80px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.7px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 15vw, 68px);
+    letter-spacing: -2px;
+  }
+
+  .hero p {
+    font-size: 13px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 280px;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+
+  .vehicle-search {
+    width: calc(100% - 24px);
+
+    margin-top: -30px;
+
+    grid-template-columns: 1fr;
+
+    padding: 14px;
+  }
+}
